@@ -2,61 +2,42 @@ This was my final homeework assignment in C Programming.
 
 Commands:
 
-
 quit(q):
-
 
 add(a):
 
-  index
+--index
   
-  lastName,firstName,email,phoneNumber
-  
+--lastName,firstName,email,phoneNumber
   
 get(g):
 
-  index
-  
+--index
   
 delete(d):
 
-  index
-  
-  
+--index  
   
 get field(f):
 
-  index
+--index
   
-  field name(lastName, firstName, email, phoneNumber)
-  
-  
+--field name(lastName, firstName, email, phoneNumber)
   
 get size(n):
 
-
-
 load from file(l):
 
-  filename.csv
-    
-    
+--filename.csv    
     
 save to file(s):
   
-  filename.csv
-  
-  
-  
+--filename.csv
+   
 edit(e):
 
-    index
+--index
     
-    field name(lastName, firstName, email, phoneNumber)
+--field name(lastName, firstName, email, phoneNumber)
     
-    new field
-    
-  
- 
-  
-  
+--new field
