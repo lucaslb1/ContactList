@@ -18,7 +18,7 @@ LinkedList* createList(void (*freeFunc)(void*)){
 	return temp;
 }
 
-int add(LinkedList* list, void* data, int n){
+int addToList(LinkedList* list, void* data, int n){
 
 	// if invalid input then return 0
 	if(data == NULL || list == NULL || n > list->size || n < 0){
@@ -64,7 +64,7 @@ int add(LinkedList* list, void* data, int n){
 }
 
 int addToFront(LinkedList* list, void* data){
-	return add(list, data, 0);
+	return addToList(list, data, 0);
 }
 
 void* get(LinkedList* list, int n){
@@ -88,7 +88,7 @@ void* get(LinkedList* list, int n){
 
 int delete(LinkedList* list, int n){
 	// Unsuccessful
-	if(list == NULL || n > list->size || n < 0){
+	if(list == NULL || n >= list->size || n < 0){
 		return 0;
 
 	} else if(n == 0) {

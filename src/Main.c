@@ -88,10 +88,14 @@
 #include <stdlib.h>
 #include <string.h>
 
+// My header files
 #include "contact.h"
 #include "linkedlist.h"
 
 int main(void) {
+	// For grading script
+	setvbuf(stdout, NULL, _IONBF, 0);
+
 	// Battelle,Lucas,lucasbatelle@gmail.com,8054038952
 	char buffer[1000];
 
@@ -100,7 +104,7 @@ int main(void) {
 		printf("Invalid freeFunc input to createList\n");
 	}
 
-	puts("ready\n");
+	printf("Ready\n");
 	char userCommand[100];
 
 	while(userCommand[0] != 'q'){
@@ -112,9 +116,17 @@ int main(void) {
 			fgets(buffer, 999, stdin);
 			Contact* temp = createContact(buffer);
 			if(temp){
-				int result = add(contactList, temp, index);
-				printf("Add result: %d\n", result);
+				int result = addToList(contactList, temp, index);
+				//printf("Add result: %d\n", result);
 			}
+		}
+
+		// Deletes item from list
+		else if(userCommand[0] == 'd'){
+			int index = atoi(fgets(buffer, 999, stdin));
+			int result = delete(contactList, index);
+			//printf("Delete result: %d\n", result);
+
 		}
 
 		// Gets item from list
@@ -124,14 +136,6 @@ int main(void) {
 			if(found){
 				printContact(found);
 			}
-
-		}
-
-		// Deletes item from list
-		else if(userCommand[0] == 'd'){
-			int index = atoi(fgets(buffer, 999, stdin));
-			int result = delete(contactList, index);
-			printf("Delete result: %d\n", result);
 
 		}
 
@@ -156,12 +160,116 @@ int main(void) {
 			}
 		}
 
+		// Prints number of items in list
+		else if(userCommand[0] == 'n'){
+			printf("%d\n", contactList->size);
+		}
+
+		// Loads list to file
+		else if(userCommand[0] == 'l'){
+
+			// Gets filename and removes the newline
+			fgets(buffer, 999, stdin);
+			buffer[strlen(buffer)-1] = '\0';
+
+			// Creates file pointer
+			FILE* fp;
+			fp = fopen(buffer, "r");
+
+			if(!fp){
+				printf("Invalid filename\n");
+			}
+
+			// Gets first line and checks validity of file
+			fgets(buffer, 999, fp);
+			if(strcmp(buffer, "lastName,firstName,email,phoneNumber\n") != 0){
+				printf("Invalid file contents\n");
+			} else {
+
+				// Adds contents of file to contactList
+				while(fgets(buffer, 999, fp)){
+					Contact* temp = createContact(buffer);
+					if(temp){
+						int result = addToList(contactList, temp, contactList->size);
+						//printf("Add result: %d\n", result);
+					}
+				}
+			}
+
+			fclose(fp);
+		}
+
+		// Saves list to file
 		else if(userCommand[0] == 's'){
 
-		}
-	}
+			// Gets filename and removes the newline
+			fgets(buffer, 999, stdin);
+			buffer[strlen(buffer)-1] = '\0';
 
+			//printf("FileName: %s\n", buffer);
+
+			// Creates file pointer
+			FILE* fp;
+			fp = fopen(buffer, "w+");
+
+			if(!fp){
+				printf("Invalid filename\n");
+			}
+
+			// Prints top line
+			fprintf(fp, "lastName,firstName,email,phoneNumber\n");
+
+			// prints each contacts info to file
+			Node* curr = contactList->head;
+			while(curr){
+				fprintf(fp, "%s,%s,%s,%s\n", ((Contact*)curr->data)->lastName, ((Contact*)curr->data)->firstName, ((Contact*)curr->data)->email, ((Contact*)curr->data)->phoneNumber);
+				curr = curr->next;
+			}
+
+			fclose(fp);
+		}
+
+		// ------------------------------------------------needs comments------------------------------------------------
+		// edit contact
+		else if(userCommand[0] == 'e'){
+			int n = atoi(fgets(buffer, 999, stdin));
+			char field[100];
+			fgets(field, 99, stdin);
+			fgets(buffer, 999, stdin);
+			buffer[strlen(buffer)-1] = '\0';
+			char *newField = malloc((sizeof(char)*strlen(buffer)) +1);
+			strcat(newField, buffer);
+
+			if (strstr(field, "firstName")) {
+				Contact* temp = get(contactList, n);
+				free(temp->firstName);
+				temp->firstName = newField;
+
+			} else if(strstr(field, "lastName")){
+				Contact* temp = get(contactList, n);
+				free(temp->lastName);
+				temp->lastName = newField;
+			} else if(strstr(field, "email")){
+				Contact* temp = get(contactList, n);
+				free(temp->email);
+				temp->email = newField;
+			} else if(strstr(field, "phoneNumber")){
+				Contact* temp = get(contactList, n);
+				free(temp->phoneNumber);
+				temp->phoneNumber = newField;
+			}
+		}
+
+		// Sorting
+		else if(userCommand[0] == 's'){
+			//sort
+
+		}
+
+
+	} // end while loop
+
+	printf("Complete\n");
 	return EXIT_SUCCESS;
 }
-
 

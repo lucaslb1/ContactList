@@ -20,7 +20,7 @@ LinkedList* createList(void (*freeFunc)(void*));
 // Adds to a linked list at position n starting at 0
 // Returns 1 if successful or 0 if unsuccessful
 // Assumes data is malloc'd
-int add(LinkedList* list, void* data, int n);
+int addToList(LinkedList* list, void* data, int n);
 
 // Adds to the front of a linked list
 // Calls add with n = 0
