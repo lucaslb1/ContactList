@@ -4,6 +4,7 @@
 #include "linkedlist.h"
 
 // Returns null if unsuccessful
+// Returns the pointer to a newly created linked list
 LinkedList* createList(void (*freeFunc)(void*)){
 
 	// Invalid freeFunc input
@@ -18,6 +19,8 @@ LinkedList* createList(void (*freeFunc)(void*)){
 	return temp;
 }
 
+// Adds data to linked list at index n
+// Returns 1 if successful, 0 if unsucessful
 int addToList(LinkedList* list, void* data, int n){
 
 	// if invalid input then return 0
@@ -63,10 +66,14 @@ int addToList(LinkedList* list, void* data, int n){
 
 }
 
+// Adds to front of linked list
+// Returns 1 if successful, 0 if unsuccessful
 int addToFront(LinkedList* list, void* data){
 	return addToList(list, data, 0);
 }
 
+
+// Returns pointer to value from linked list at index n
 void* get(LinkedList* list, int n){
 
 	// Unsuccessful
@@ -86,13 +93,15 @@ void* get(LinkedList* list, int n){
 	}
 }
 
+
+// Deletes value at index n of linked list. 
+// returns 1 if successful, 0 if unsuccessful
 int delete(LinkedList* list, int n){
 	// Unsuccessful
 	if(list == NULL || n >= list->size || n < 0){
 		return 0;
 
 	} else if(n == 0) {
-
 		// Case for deleting the first item in list
 
 		// Save deleted node so that it can be freed
@@ -149,6 +158,37 @@ int delete(LinkedList* list, int n){
 
 			// successful delete
 			return 1;
-		}
+		} 
+		
 	}
+
+} // end function
+
+
+// Sorts a linked list using Merge Sort
+// inputs; linked list to be sorted, compare function which is using in sorting
+// Returns 1 if successful and 0 if unsuccessful 
+int sortLinkedList(LinkedList* l, void (*compare)(void* data1, void* data2)){
+	return 1;
 }
+
+// Linked List pointer should be set to NULL after using this function
+// Deletes everything and frees data
+void freeLinkedList(LinkedList* l){
+	
+	// First deletes all nodes
+	while(l->size > 0){
+		delete(l, 0);
+	}
+	
+	free(l);
+	l = NULL;
+	
+}
+
+
+
+
+
+
+

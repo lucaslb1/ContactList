@@ -96,7 +96,6 @@ int main(void) {
 	// For grading script
 	setvbuf(stdout, NULL, _IONBF, 0);
 
-	// Battelle,Lucas,lucasbatelle@gmail.com,8054038952
 	char buffer[1000];
 
 	LinkedList* contactList = createList(&freeContact);
@@ -269,6 +268,8 @@ int main(void) {
 
 	} // end while loop
 
+	
+	freeLinkedList(contactList);
 	printf("Complete\n");
 	return EXIT_SUCCESS;
 }
