@@ -7,9 +7,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-
 #include "contact.h"
-
 
 
 
@@ -99,4 +97,33 @@ void freeContact(void* c){
 // prints contact information
 void printContact(Contact* c){
 	printf("%s,%s,%s,%s\n", c->lastName, c->firstName, c->email, c->phoneNumber);
+}
+
+
+// Compares two contacts
+// Returns 1 if data1 > data2, 0 if data1 == data2 and 2 if data1 < data2
+int compareContact(void* data1, void* data2){
+
+	Contact* contact1 = (Contact*)data1;
+	Contact* contact2 = (Contact*)data2;
+
+	int compare = strcmp(contact1->lastName, contact2->lastName);
+	if(!compare){
+		return compare;
+	}
+
+	compare = strcmp(contact1->firstName, contact2->firstName);
+	if(!compare){
+		return compare;
+	}
+
+	compare = strcmp(contact1->email, contact2->email);
+	if(!compare){
+		return compare;
+	}
+
+	compare = strcmp(contact1->phoneNumber, contact2->phoneNumber);
+	return compare;
+
+
 }

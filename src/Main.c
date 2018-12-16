@@ -123,7 +123,7 @@ int main(void) {
 		// Deletes item from list
 		else if(userCommand[0] == 'd'){
 			int index = atoi(fgets(buffer, 999, stdin));
-			int result = delete(contactList, index);
+			int result = deleteItem(contactList, index);
 			//printf("Delete result: %d\n", result);
 
 		}

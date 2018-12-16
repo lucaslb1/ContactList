@@ -1,6 +1,5 @@
 #include<stdio.h>
 #include<stdlib.h>
-
 #include "linkedlist.h"
 
 // Returns null if unsuccessful
@@ -96,7 +95,7 @@ void* get(LinkedList* list, int n){
 
 // Deletes value at index n of linked list. 
 // returns 1 if successful, 0 if unsuccessful
-int delete(LinkedList* list, int n){
+int deleteItem(LinkedList* list, int n){
 	// Unsuccessful
 	if(list == NULL || n >= list->size || n < 0){
 		return 0;
@@ -178,7 +177,7 @@ void freeLinkedList(LinkedList* l){
 	
 	// First deletes all nodes
 	while(l->size > 0){
-		delete(l, 0);
+		deleteItem(l, 0);
 	}
 	
 	free(l);

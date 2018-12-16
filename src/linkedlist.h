@@ -33,7 +33,7 @@ int addToFront(LinkedList* list, void* data);
 void* get(LinkedList* list, int n);
 
 // returns a 1 if successful or 0 if unsuccessful
-int delete(LinkedList* list, int n);
+int deleteItem(LinkedList* list, int n);
 
 // Linked List pointer should be set to NULL after using this function
 // Deletes everything and frees data
