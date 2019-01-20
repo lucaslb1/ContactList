@@ -1,4 +1,4 @@
-This was my final homeework assignment in C Programming.
+This was my final homework assignment in C Programming.
 
 Commands:
 
