@@ -164,6 +164,7 @@ int deleteItem(LinkedList* list, int n){
 } // end function
 
 
+// Incomplete
 // Sorts a linked list using Merge Sort
 // inputs; linked list to be sorted, compare function which is using in sorting
 // Returns 1 if successful and 0 if unsuccessful 
